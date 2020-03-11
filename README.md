@@ -1,0 +1,2 @@
+# Coffee_bubble
+Pixar's RenderMan system allows geometry to be created by the PRMan renderer - in addition to objects explicitly modelled in Maya. PRMan can use plugins written in python or C++. This page shows the results of using one or more python scripts to generate geometry at render-time.  In this project, I create a python script to generate coffee bubbles. Also, osl language is used to create a renderman precedual shader.

@@ -1,0 +1,42 @@
+// A combination of the CylinderMask and
+// BubbleMask shaders.
+shader
+Bubbles_v02(
+	float radius = 2.0,
+	float upper_height = 1.0,
+	float lower_height = 0.0,
+	float plane_height = 0.0,
+	float height_dropoff = 2,
+	
+	string spacename = "world",
+	
+	output color resultRadMask = 0,
+	output color resultHtMask = 0)
+{
+// Get a copy of the shading point
+// but in a specified space.
+point p = transform(spacename, P);
+
+// Find the distance of the shading 
+// point from the central Y axis.
+point y_axis = point(0,p[1],0);
+float dist = distance(y_axis, p);
+float mp = pow(dist,height_dropoff);
+float mapp = lower_height +mp *(upper_height - lower_height) / pow(radius, height_dropoff) ;
+
+if(dist >= radius || p[1] <= plane_height)
+	resultRadMask = 0;
+else
+	resultRadMask = 1;
+
+// Find the height of the shading
+// point above the origin of the
+// specified space.
+if(p[1] <= mapp && p[1] >= plane_height)
+	resultHtMask = 1;
+else
+	resultHtMask = 0;
+	
+if(p[1] <= plane_height)
+	resultRadMask = 0;
+}

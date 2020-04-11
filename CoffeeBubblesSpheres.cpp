@@ -63,7 +63,6 @@ typedef struct
 // vector<data type> vector name
 vector<Circle> circles;
 void createSpheres(Circle thisCircle);
-void createCone();
 
 // ----------------------------------------------------
 // A RiProcedural required function
